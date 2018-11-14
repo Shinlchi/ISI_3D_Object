@@ -65,7 +65,8 @@ OffLoader::OffLoader(string off)
     }
     else
     {
-        cout << "can't read the file" << endl;
+        cout << "Error file : can't read the file" << endl;
+        exit(0);
     }
     obj_off.close(); //close file
 

@@ -12,7 +12,10 @@
 #include <QApplication>
 #include "my_main_window.h"
 
-
+#include <string>
+#include <iostream>
+#include <algorithm>
+#include <tclap/CmdLine.h>
 #include "my_object3d.h"
 #include "objects/cube.h"
 #include "objects/pyramid.h"
@@ -20,10 +23,14 @@
 #include "objects/cylindre.h"
 #include "objects/cone.h"
 #include "objects/disk.h"
+#include "objects/disk_hole.h"
 #include "objects/sphere.h"
 #include "objects/tore.h"
 #include "objects/func_surface.h"
 #include "objects/off_loader.h"
+
+using namespace TCLAP;
+using namespace std;
 
 /**
 * Program usage
@@ -51,25 +58,53 @@ float func_bumps(float x, float y)
     return sin(10*(x*x+y*y))/10;
 }
 
-
-
 int main(int argc, char *argv[]){
+
     QApplication app(argc, argv);
+    float objectRadius = 1.;
+    QPointer<MyScene> myScene = new MyScene(objectRadius);
 
     // Parse program arguments here
     // with the tclap library
     // http://tclap.sourceforge.net/manual.html
-    //
+
+    // Define the command line object.
+    CmdLine cmd("Command description message", ' ', "0.9",false);
+
+    if (argc > 1)
+    {
+        //Exeption for use "-off"
+        string compare;
+        compare = argv[1];
+        if (compare == "-off")
+        {
+            strcpy(argv[1],"-o");
+        }
+
+            // Define a value argument and add it to the command line.
+            ValueArg<string> nameArg("o","off","File name to load",true,"","string");
+            cmd.add(nameArg);
+
+            // Parse the args.
+            cmd.parse(argc,argv);
+
+            // Get the value parsed by each arg.
+            string name = nameArg.getValue();
+
+            // add user defined OFF files
+
+            myScene->addObject(new OffLoader(name));
+            cout << "Loaded with " << argv[2] << endl;
+    }
 
     // initialize my custom 3D scene
-    float objectRadius = 1.;
-    QPointer<MyScene> myScene = new MyScene(objectRadius);
 
     //simple objects
     myScene->addObject(new Cube());
     myScene->addObject(new Pyramid());
     myScene->addObject(new Cube_corner());
     myScene->addObject(new Disk(20));
+    myScene->addObject(new Disk_hole(20));
     myScene->addObject(new Cylindre(20));
     myScene->addObject(new Cone(20));
     myScene->addObject(new Sphere(20));
@@ -80,9 +115,6 @@ int main(int argc, char *argv[]){
     myScene->addObject(new FuncSurface(50,50,-PI,PI,-PI,PI,&func_cossin));
     myScene->addObject(new FuncSurface(50,50,-1,1,-1,1,&func_bumps));
 
-    // add user defined OFF files
-    myScene->addObject(new OffLoader("data/aircraft.off"));
-
     // initialize my custom main window
     QPointer<MyMainWindow> myMainWindow = new MyMainWindow(myScene);
     // display the window
@@ -90,4 +122,3 @@ int main(int argc, char *argv[]){
     // enter in the main loop
     return app.exec();
 }
-
