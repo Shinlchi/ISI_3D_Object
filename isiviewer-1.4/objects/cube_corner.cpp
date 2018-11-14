@@ -31,6 +31,6 @@ Cube_corner::Cube_corner()
 
     // Fill normals vectors
     computeNormalsT();
-    computeNormalsV();  // to be fixed
+    computeNormalsV(70);
 }
 

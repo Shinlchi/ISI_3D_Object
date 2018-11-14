@@ -25,6 +25,6 @@ Pyramid::Pyramid()
     this->addTriangle(ts[i][0], ts[i][1], ts[i][2]);
 
   computeNormalsT();
-  computeNormalsV();  // to be fixed
+  computeNormalsV(70);
 }
 

@@ -37,5 +37,5 @@ FuncSurface::FuncSurface(int nbx, int nby, float minx, float maxx, float miny, f
 
     normalize();
     computeNormalsT();
-    computeNormalsV();  // to be fixed
+    computeNormalsV(70);
 }
