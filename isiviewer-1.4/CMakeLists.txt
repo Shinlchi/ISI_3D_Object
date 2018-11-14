@@ -11,7 +11,7 @@ set(CMAKE_AUTOMOC ON)
 include_directories(glm ${PROJECT_SOURCE_DIR} ${PROJECT_BINARY_DIR})
 
 set(SOURCES my_qglviewer.cpp my_main_window.cpp my_scene.cpp my_object3d.cpp
-            main.cpp objects/triMesh.cpp objects/off_loader.cpp objects/func_surface.cpp objects/tore.cpp objects/sphere.cpp objects/cone.cpp objects/disk.cpp objects/cylindre.cpp objects/cube_corner.cpp objects/cube.cpp objects/pyramid.cpp)
+            main.cpp objects/triMesh.cpp objects/off_loader.cpp objects/func_surface.cpp objects/tore.cpp objects/sphere.cpp objects/cone.cpp objects/disk.cpp objects/cylindre.cpp objects/cube_corner.cpp objects/cube.cpp objects/pyramid.cpp objects/disk_hole.cpp)
 
 add_executable(isiviewer ${SOURCES})
 

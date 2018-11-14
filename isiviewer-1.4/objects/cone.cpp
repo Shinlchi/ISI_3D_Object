@@ -47,7 +47,7 @@ Cone::Cone(int nVertice)
     }
 
     computeNormalsT();
-    computeNormalsV(70);
+    computeNormalsV(70);  // to be fixed
 }
 
 
