@@ -31,6 +31,6 @@ Disk::Disk(int nVertice)
     }
 
     computeNormalsT();
-    computeNormalsV();  // to be fixed
+    computeNormalsV(70);
 }
 

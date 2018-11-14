@@ -54,7 +54,7 @@ Cube::Cube()
   if (use_computed_normals) {
 
       computeNormalsT();
-      computeNormalsV();  // to be fixed
+      computeNormalsV(70);
 
     } else { // use manually defined normals
 

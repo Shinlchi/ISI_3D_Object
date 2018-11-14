@@ -56,7 +56,7 @@ void TriMesh::computeNormalsT(){
         Vertex a = this->_vertices[this->_triangles[t][0]];
         Vertex b = this->_vertices[this->_triangles[t][1]];
         Vertex c = this->_vertices[this->_triangles[t][2]];
-        Normal n = glm::normalize(glm::cross( a - b , a - c));
+        Normal n = glm::normalize(glm::cross(b-a , c-a));
         addNormalT(n);
     }
 

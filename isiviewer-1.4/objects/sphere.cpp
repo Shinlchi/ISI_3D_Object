@@ -16,10 +16,10 @@ Sphere::Sphere(int nVertice)
     this->addVertex(0,0,-1); //bottom center vertice
     for (j=0; j<nVertice; j++) //side vertices
     {
-        fi = -PI/2 + (PI/(nVertice-1))*j;
+        fi = -PI/2 + (PI/(nVertice))*j;
         for (i=0; i<nVertice ; ++i)
         {
-            teta = -PI + ((2*PI)/(nVertice-1))*i;
+            teta = -PI + ((2*PI)/(nVertice))*i;
             x = cos(fi) * cos(teta);
             y = cos(fi) * sin(teta);
             z = sin(fi);
@@ -33,11 +33,11 @@ Sphere::Sphere(int nVertice)
     {
         if (i==nVertice-1)
         {
-            this->addTriangle(0, i+2-nVertice, i+1);
+            this->addTriangle(0, i+2, i+1+nVertice);
         }
         else
         {
-            this->addTriangle(0, i+2, i+1);
+            this->addTriangle(0, i+2+nVertice, i+1+nVertice);
         }
     }
 
@@ -54,7 +54,7 @@ Sphere::Sphere(int nVertice)
     }
 
     //fill triangle for the side
-    for (i=0; i<nVertice*(nVertice-1); i++)
+    for (i=nVertice; i<nVertice*(nVertice-1); i++)
     {
         if ((i+1) % nVertice == 0)  // example if i=39
         {
@@ -67,9 +67,8 @@ Sphere::Sphere(int nVertice)
             this->addTriangle(i+1+nVertice, i+2, i+2+nVertice);
         }
     }
-
     computeNormalsT();
-    computeNormalsV();  // to be fixed
+    computeNormalsV(70);
 }
 
 

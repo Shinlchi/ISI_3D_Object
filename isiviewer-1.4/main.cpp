@@ -51,10 +51,7 @@ float func_bumps(float x, float y)
     return sin(10*(x*x+y*y))/10;
 }
 
-float func_pyramid(float x,float y)
-{
-    return (1-abs(x+y))-abs(y-x);
-}
+
 
 int main(int argc, char *argv[]){
     QApplication app(argc, argv);
@@ -82,7 +79,6 @@ int main(int argc, char *argv[]){
     myScene->addObject(new FuncSurface(50,50,-PI,PI,-PI,PI,&func_expcos));
     myScene->addObject(new FuncSurface(50,50,-PI,PI,-PI,PI,&func_cossin));
     myScene->addObject(new FuncSurface(50,50,-1,1,-1,1,&func_bumps));
-    myScene->addObject(new FuncSurface(50,50,-1,1,-1,1,&func_pyramid));
 
     // add user defined OFF files
     myScene->addObject(new OffLoader("data/aircraft.off"));

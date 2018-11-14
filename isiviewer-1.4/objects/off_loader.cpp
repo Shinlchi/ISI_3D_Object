@@ -71,7 +71,7 @@ OffLoader::OffLoader(string off)
 
     normalize();
     computeNormalsT();
-    computeNormalsV();  // to be fixed
+    computeNormalsV(70);
 }
 
 OffLoader::~OffLoader()
