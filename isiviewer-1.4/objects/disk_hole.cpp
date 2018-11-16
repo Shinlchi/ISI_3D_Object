@@ -39,6 +39,6 @@ Disk_hole::Disk_hole(int nVertice)
     }
 
     computeNormalsT();
-    computeNormalsV();  // to be fixed
+    computeNormalsV();
 }
 
