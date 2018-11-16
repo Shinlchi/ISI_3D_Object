@@ -74,11 +74,12 @@ void TriMesh::computeNormalsV(float angle_threshold){
             courant = {0, 0, 0};
             for(unsigned int k=0; k<_triangles.size(); k++)
             {
+
                 if(this->_triangles[t][i] == this->_triangles[k][0] ||
                         this->_triangles[t][i] == this->_triangles[k][1] ||
                         this->_triangles[t][i] == this->_triangles[k][2])
                 {
-                    if((acos(glm::dot(this->_normalsT[t],this->_normalsT[k]))) < angle_threshold*PI/180)
+                    if((acos(glm::dot(this->_normalsT[k],this->_normalsT[t]))) <= (angle_threshold*(PI/180)))
                     {
                        courant += this->_normalsT[k];
                     }
